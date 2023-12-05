@@ -7,12 +7,14 @@ from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import euclidean_distances
 """
-# Similar Song Generator
+# NewMusic Song Recommendation
 """
 
 # Read in all data
 df = pd.read_csv('spotify_songs_edit_2.csv')
 df = df.drop_duplicates(subset=['track_name', 'track_artist'])
+#print(len(df)) # Shows rows with unique track_name and track_artist remain
+#df.info() # Validate that all values are non-null and not missing
 
 # Read in non-numeric data for use in User-Interface
 df_tracks = pd.read_csv('non_numeric_data.csv')
