@@ -40,7 +40,7 @@ df['cluster'] = df['cluster'].astype('category')
 #Generate Similar songs
 generated = st.button("Generate Similar Songs", type="primary")
 
-if generated:
+if generated and input_artist_name:
     song_and_artist_list = input_artist_name.split(' --- by ')
 
     search = df.query('track_name == @song_and_artist_list[0] and track_artist == @song_and_artist_list[1]')
