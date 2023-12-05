@@ -7,7 +7,7 @@ from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import euclidean_distances
 """
-# NewMusic Song Recommendation
+# NewMusic Song Recommender
 """
 
 # Read in all data
@@ -57,3 +57,8 @@ top_ten_ranked['Ranked Similarity'] = range(1, 11)
 top_ten_ranked.set_index('Ranked Similarity', inplace=True)
 st.dataframe(top_ten_ranked, use_container_width=True)
 # df.loc[df['column_name'] == some_value]
+
+# Fix column names in table
+# Display histograms
+# Make button actually work
+# Start with no selections
