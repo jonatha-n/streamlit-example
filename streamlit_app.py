@@ -55,10 +55,57 @@ ranked_songs = songs_in_same_cluster.sort_values(by='distance_to_liked')
 top_ten_ranked = ranked_songs.iloc[1:11, [1,2,3,10]]
 top_ten_ranked['Ranked Similarity'] = range(1, 11)
 top_ten_ranked.set_index('Ranked Similarity', inplace=True)
-st.dataframe(top_ten_ranked, use_container_width=True)
+st.dataframe(top_ten_ranked, use_container_width=True, column_config={'track_name' : 'Track Name', 'track_artist' : 'Track Artist', 'playlist_genre' : 'Genre'})
 # df.loc[df['column_name'] == some_value]
 
-# Fix column names in table
 # Display histograms
 # Make button actually work
 # Start with no selections
+
+
+"""
+# Data Distribution
+"""
+fig1 = pyplot.figure(figsize=[10, 10])
+ax1 = fig1.add_subplot(5,1,1)
+ax2 = fig1.add_subplot(5,1,2)
+ax3 = fig1.add_subplot(5,1,3)
+ax4 = fig1.add_subplot(5,1,4)
+ax5 = fig1.add_subplot(5,1,5)
+
+
+ax1.hist(df['energy'])
+ax1.set_xlabel('Energy')
+ax1.set_ylabel('Frequency')
+
+ax2.hist(df['key'])
+ax2.set_xlabel('Key')
+ax2.set_ylabel('Frequency')
+
+ax3.hist(df['valence'])
+ax3.set_xlabel('Valence')
+ax3.set_ylabel('Frequency')
+
+ax4.hist(df['acousticness'])
+ax4.set_xlabel('Acousticness')
+ax4.set_ylabel('Frequency')
+
+ax5.hist(df['speechiness'])
+ax5.set_xlabel('Speechiness')
+ax5.set_ylabel('Frequency')
+
+fig1.tight_layout(pad=1)
+st.pyplot(fig1)
+
+#pyplot.hist(df['energy'])
+#pyplot.title('Histogram of Energy for All Songs')
+#pyplot.xlabel('Energy Value')
+#pyplot.ylabel('Frequency')
+
+
+#pyplot.hist(df['Key'])
+#pyplot.title('Histogram of Keys for All Songs')
+#pyplot.xlabel('Key')
+#pyplot.ylabel('Frequency')
+
+#st.pyplot()
