@@ -7,7 +7,7 @@ from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import euclidean_distances
 """
-# NewMusic Song Recommender
+# NewMusic Song Recommendation Tool
 """
 
 # Read in all data
@@ -59,11 +59,8 @@ if generated and input_artist_name:
     top_ten_ranked = ranked_songs.iloc[1:11, [1,2,3,10]]
     top_ten_ranked['Ranked Similarity'] = range(1, 11)
     top_ten_ranked.set_index('Ranked Similarity', inplace=True)
-    st.dataframe(top_ten_ranked, use_container_width=True, column_config={'track_name' : 'Track Name', 'track_artist' : 'Track Artist', 'playlist_genre' : 'Genre'})
+    st.dataframe(top_ten_ranked, use_container_width=True, column_config={'track_name' : 'Track Name', 'track_artist' : 'Track Artist', 'playlist_genre' : 'Genre', 'distance_to_liked' : 'Distance'})
 # df.loc[df['column_name'] == some_value]
-
-# Make button actually work
-# Start with no selections
 
 st.write(" ")
 st.write(" ")
@@ -71,32 +68,32 @@ st.write(" ")
 # Data Distribution for Song Characteristics
 """
 fig1 = pyplot.figure(figsize=[8, 15])
-ax1 = fig1.add_subplot(5,1,1)
-ax2 = fig1.add_subplot(5,1,2)
-ax3 = fig1.add_subplot(5,1,3)
-ax4 = fig1.add_subplot(5,1,4)
-ax5 = fig1.add_subplot(5,1,5)
+axis1 = fig1.add_subplot(5,1,1)
+axis2 = fig1.add_subplot(5,1,2)
+axis3 = fig1.add_subplot(5,1,3)
+axis4 = fig1.add_subplot(5,1,4)
+axis5 = fig1.add_subplot(5,1,5)
 
 
-ax1.hist(df['energy'])
-ax1.set_xlabel('Energy Values')
-ax1.set_ylabel('Frequency')
+axis1.hist(df['energy'])
+axis1.set_xlabel('Energy Values')
+axis1.set_ylabel('Frequency')
 
-ax2.hist(df['key'])
-ax2.set_xlabel('Key Values')
-ax2.set_ylabel('Frequency')
+axis2.hist(df['key'])
+axis2.set_xlabel('Key Values')
+axis2.set_ylabel('Frequency')
 
-ax3.hist(df['valence'])
-ax3.set_xlabel('Valence Values')
-ax3.set_ylabel('Frequency')
+axis3.hist(df['valence'])
+axis3.set_xlabel('Valence Values')
+axis3.set_ylabel('Frequency')
 
-ax4.hist(df['acousticness'])
-ax4.set_xlabel('Acousticness Values')
-ax4.set_ylabel('Frequency')
+axis4.hist(df['acousticness'])
+axis4.set_xlabel('Acousticness Values')
+axis4.set_ylabel('Frequency')
 
-ax5.hist(df['speechiness'])
-ax5.set_xlabel('Speechiness Values')
-ax5.set_ylabel('Frequency')
+axis5.hist(df['speechiness'])
+axis5.set_xlabel('Speechiness Values')
+axis5.set_ylabel('Frequency')
 
 fig1.tight_layout(pad=2)
 st.pyplot(fig1)
