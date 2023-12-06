@@ -34,12 +34,15 @@ attributes_scaled = scaler.fit_transform(att)
 num_clusters = 6
 
 # Use KMeans to determine clusters
-kmeans = KMeans(n_clusters=num_clusters, random_state=0)
+kmeans = KMeans(n_clusters=num_clusters, random_state=0, n_init=10)
 df['cluster'] = kmeans.fit_predict(attributes_scaled)
 df['cluster'] = df['cluster'].astype('category')
 
-#inertia1 = kmeans.inertia_
-#print('inertia =' , inertia1)
+inertia1 = kmeans.inertia_
+print('inertia =' , inertia1)
+
+silhouette_score_for_clusters = silhouette_score(attributes_scaled, df['cluster'])
+print("Silhouette Score:", silhouette_score_for_clusters)
 
 #Generate Similar songs
 generated = st.button("Generate Similar Songs", type="primary")
