@@ -6,6 +6,7 @@ from matplotlib import pyplot
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import euclidean_distances
+from sklearn.metrics import silhouette_score
 """
 # NewMusic Song Recommendation Tool
 """
@@ -36,6 +37,9 @@ num_clusters = 6
 kmeans = KMeans(n_clusters=num_clusters, random_state=0)
 df['cluster'] = kmeans.fit_predict(attributes_scaled)
 df['cluster'] = df['cluster'].astype('category')
+
+#inertia1 = kmeans.inertia_
+#print('inertia =' , inertia1)
 
 #Generate Similar songs
 generated = st.button("Generate Similar Songs", type="primary")
