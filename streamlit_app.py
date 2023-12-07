@@ -13,9 +13,12 @@ from sklearn.metrics import silhouette_score
 
 # Read in all data
 df = pd.read_csv('spotify_songs_edit_2.csv')
-df = df.drop_duplicates(subset=['track_name', 'track_artist'])
-#print(len(df)) # Shows rows with unique track_name and track_artist remain
-#df.info() # Validate that all values are non-null and not missing
+df = df.drop_duplicates(subset=['track_name', 'track_artist']) 
+# Shows rows with unique track_name and track_artist remain
+# print(len(df))
+
+# Validate that all values are non-null and not missing
+# df.info()
 
 # Read in non-numeric data for use in User-Interface
 df_tracks = pd.read_csv('non_numeric_data.csv')
@@ -38,14 +41,17 @@ kmeans = KMeans(n_clusters=num_clusters, random_state=0, n_init=10)
 df['cluster'] = kmeans.fit_predict(attributes_scaled)
 df['cluster'] = df['cluster'].astype('category')
 
-inertia1 = kmeans.inertia_
-print('inertia =' , inertia1)
 
-silhouette_score_for_clusters = silhouette_score(attributes_scaled, df['cluster'])
-print("Silhouette Score:", silhouette_score_for_clusters)
+#Validation 1
+# inertia1 = kmeans.inertia_
+# print('inertia =' , inertia1)
+
+#Validation 2
+# silhouette_score_for_clusters = silhouette_score(attributes_scaled, df['cluster'])
+# print("Silhouette Score:", silhouette_score_for_clusters)
 
 #Generate Similar songs
-generated = st.button("Generate Similar Songs", type="primary")
+generated = st.button("Generate Recommendations", type="primary")
 
 if generated and input_artist_name:
     song_and_artist_list = input_artist_name.split(' --- by ')
@@ -67,7 +73,6 @@ if generated and input_artist_name:
     top_ten_ranked['Ranked Similarity'] = range(1, 11)
     top_ten_ranked.set_index('Ranked Similarity', inplace=True)
     st.dataframe(top_ten_ranked, use_container_width=True, column_config={'track_name' : 'Track Name', 'track_artist' : 'Track Artist', 'playlist_genre' : 'Genre', 'distance_to_liked' : 'Distance'})
-# df.loc[df['column_name'] == some_value]
 
 st.write(" ")
 st.write(" ")
